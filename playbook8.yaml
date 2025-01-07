@@ -1,0 +1,22 @@
+---
+- name: interactive ansible playbook to create a user account
+  hosts: all
+  vars_prompt:
+    - name: username
+      prompt: "Enter Username:"
+      private: false
+    - name: password
+      prompt: "Enter password:"
+    - name: desg
+      prompt: "Enter your designation: " 
+      private: false
+  become: true
+  tasks:
+   - name: create a user
+     user:
+      name: "{{ username }}"
+      password: "{{ password }}"
+      comment: "{{ desg }}"
+      shell: /bin/bash
+      uid: 2233
+...

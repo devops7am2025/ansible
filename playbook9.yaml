@@ -1,0 +1,26 @@
+---
+- name: playbook to install tomcat, change the port, restart tomcat and deploy an application
+  hosts: all
+  become: true
+  vars:
+   var1: tomcat8
+  tasks:
+   - name: install tomcat
+     apt:
+      name: "{{ var1 }}"
+      state: present
+      update_cache: yes
+   - name: change the port
+     replace:
+      regexp: 8080
+      replace: 9090
+      path: "/etc/{{ var1 }}/server.xml"
+   - name: restart tomcat
+     service:
+      name: "{{ var1 }}"
+      state: restarted
+   - name: deploy an application
+     copy:
+      src: devops.war
+      dest: "/var/lib/{{ var1 }}/webapps/"
+...

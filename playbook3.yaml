@@ -1,0 +1,38 @@
+---
+- name: playbook to install elinks, git , maven, tree, apache2, figlet, tomcat10
+  hosts: all
+  become: true
+  tasks:
+    - name: install elinks
+      apt:
+       name: elinks
+       state: present
+       update_cache: yes
+      tags: untagged
+    - name: install git
+      apt: 
+       name: git
+       state: present
+    - name: install maven
+      apt: 
+       name: maven
+       state: present
+    - name: install tree
+      apt:
+        name: tree 
+        state: present
+    - name: install apache2
+      apt:
+       name: apache2
+       state: present
+    - name: install figlet
+      apt:
+       name: figlet
+       state: present
+    - name: install tomcat10
+      apt:
+        name: tomcat10
+        state: present
+...
+
+#ansible all -m apt -a 'name=elinks state=present update_cache=yes'

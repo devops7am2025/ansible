@@ -1,0 +1,15 @@
+---
+- name: playbook to install a package and deploy a website
+  hosts: 172.31.42.216
+  become: true
+  tasks:
+   - name: install package
+     apt:
+      name: "{{ var1 }}"
+      state: "{{ var4 }}"
+      update_cache: "{{ var5 }}"
+   - name: change the site
+     copy:
+       content: "{{ var2 }}"
+       dest: "{{ var3 }}"
+...

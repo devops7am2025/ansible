@@ -1,0 +1,19 @@
+- name: playbook to install elinks
+  hosts: dev 
+  become: true
+  tasks:
+    - name: install elinks
+      apt:
+       name: elinks
+       state: present
+       update_cache: yes
+- name: playbook to install tree
+  hosts: qa
+  become: true
+  tasks:
+   - name: install tree
+     apt:
+      name: tree
+      state: present
+
+#ansible all -m apt -a 'name=elinks state=present update_cache=yes'

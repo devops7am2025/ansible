@@ -1,0 +1,24 @@
+---
+- name: install apache2 
+  hosts: all
+  become: true
+  tasks:
+   - name: install apache2
+     apt:
+      name: apache2
+      state: present
+      update_cache: yes
+   - name: add my content to the dummy site
+     copy:
+      content: "<h1>Hello DevOps Engineers</h1><h2>Welcome to my website</h2>"
+      dest: /var/www/html/index.html
+     tags: change_site
+   - name: create a user
+     user:
+       name: sarath
+       password: 12345
+       home: /home/sarath
+       uid: 1234
+       comment: developer
+     tags: create_user 
+...

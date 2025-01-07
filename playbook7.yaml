@@ -1,0 +1,15 @@
+---
+- name: interactive ansible playbook
+  hosts: all
+  vars_prompt:
+    - name: user_input
+      prompt: what package do you want to install??
+      private: false
+  become: true
+  tasks:
+   - name: install a package
+     apt:
+      name: "{{ user_input }}"
+      state: present
+      update_cache: yes
+...
