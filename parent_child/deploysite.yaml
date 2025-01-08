@@ -1,0 +1,4 @@
+- name: copy web content
+  copy: 
+   content: "<h1>hello world</h1>"
+   dest: /var/www/html/index.html

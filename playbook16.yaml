@@ -1,0 +1,16 @@
+---
+- name: create a user
+  hosts: all
+  vars_prompt:
+   - name: package
+     prompt: "Enter the package name: " 
+     private: false
+  become: true
+  tasks:
+   - name: install a package
+     apt:
+      name: "{{ package }}"
+      state: present
+      update_cache: yes
+     when:
+      package=="default-jdk"

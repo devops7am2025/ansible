@@ -1,0 +1,13 @@
+---
+- name: parent playbook that runs all the child elements
+  hosts: all
+  become: true
+  tasks:
+   - name: call child elements
+     include_tasks: "{{item}}"
+     with_items:
+      - createuser.yaml  
+      - deploysite.yaml  
+      - installapache2.yaml  
+      - installjava.yaml  
+      - installtomcat10.yaml

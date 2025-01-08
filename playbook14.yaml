@@ -1,0 +1,14 @@
+---
+- name: playbook to install a package based on a condition
+  hosts: all
+  vars:
+    num: 500
+  become: true
+  tasks:
+   - name: install package java
+     apt:
+      name: default-jdk
+      state: present
+     when: 
+       num==50
+...

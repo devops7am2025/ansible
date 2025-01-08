@@ -1,0 +1,14 @@
+---
+- name: playbook to install git
+  hosts: all
+  become: true
+  tasks:
+   - name: install package git
+     apt:
+      name: git
+      state: present
+     register: results
+   - name: print the logs
+     debug:
+      var: results
+...
